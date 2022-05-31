@@ -1,84 +1,57 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 using System;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Collections.Concurrent;
 
 public class UDPReceive : MonoBehaviour
 {
-    Thread receiveThread;
+    private Thread receiveThread;
 
-    UdpClient client;
+    private UdpClient client;
 
     [SerializeField]
-    private int port; 
+    private int port = 8051;
 
-    private string lastReceivedUDPPacket = "";
+    public static ConcurrentQueue<String> actionQueue { get; private set; }
 
     public void Start()
     {
-
         init();
     }
 
-    // OnGUI
-    void OnGUI()
-    {
-        Rect rectObj = new Rect(40, 10, 200, 400);
-        GUIStyle style = new GUIStyle();
-        style.alignment = TextAnchor.UpperLeft;
-        GUI.Box(rectObj, "# UDPReceive\n127.0.0.1 " + port + " #\n"
-                    + "\nLast Packet: \n" + lastReceivedUDPPacket
-                , style);
-    }
-
-    // init
     private void init()
-    {
-        print("UDPSend.init()");
-
-        // status
-        print("Sending to 127.0.0.1 : " + port);
-        print("Test-Sending to this Port: nc -u 127.0.0.1  " + port + "");
-
-        receiveThread = new Thread(
-            new ThreadStart(ReceiveData));
+    { 
+        actionQueue =  new ConcurrentQueue<String>();
+        receiveThread = new Thread(new ThreadStart(ReceiveData));
         receiveThread.IsBackground = true;
         receiveThread.Start();
-
     }
 
-    // receive thread
     private void ReceiveData()
     {
-
+        IPEndPoint anyIP;
+        byte[] data;
         client = new UdpClient(port);
+        try
+        {
+            anyIP = new IPEndPoint(IPAddress.Any, 0);
+            data = client.Receive(ref anyIP);
+            string text = Encoding.UTF8.GetString(data);
+            actionQueue.Enqueue(text);
+        }
+        catch (Exception err)
+        {
+            print(err.ToString());
+            return;
+        }
         while (true)
         {
-
-            try
-            {
-                IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
-                byte[] data = client.Receive(ref anyIP);
-
- 
-                string text = Encoding.UTF8.GetString(data);
-
-                print(">> " + text);
-
-            }
-            catch (Exception err)
-            {
-                print(err.ToString());
-            }
+            data = client.Receive(ref anyIP);
+            string text = Encoding.UTF8.GetString(data);
+            actionQueue.Enqueue(text);
         }
-    }
-
-    public string getLatestUDPPacket()
-    {
-        return lastReceivedUDPPacket;
     }
 }
