@@ -1,12 +1,5 @@
-#ifndef PIN_SERIAL_RX
-#define PIN_SERIAL_RX PA10
-#endif
-#ifndef PIN_SERIAL_TX
-#define PIN_SERIAL_TX PA9
-#endif
-#define M_PI 3.14159265358979323846
-
 #include "MPU_DRIVERS/MPU_FULL.h"
+#define M_PI 3.14159265358979323846
 
 #define BAUD_RATE 38400
 
@@ -61,7 +54,6 @@ void setup() {
 }
 
 void loop() {
-
   int mpuIntStatus = mpu.getIntStatus();
   fifoCount = mpu.getFIFOCount();
 
@@ -80,13 +72,15 @@ void loop() {
 
 void SendQuaternion() {
   mpu.dmpGetQuaternion(&q, fifoBuffer);
+  Serial.print("r/");
   Serial.print(q.w, 4);
   Serial.print("/");
   Serial.print(q.x, 4);
   Serial.print("/");
   Serial.print(q.y, 4);
   Serial.print("/");
-  Serial.println(q.z, 4);
+  Serial.print(q.z, 4);
+  Serial.print("#");
 }
 
 void SendEuler() {
