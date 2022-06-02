@@ -5,10 +5,10 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 
-public class PLayerScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
 
-    public static PLayerScript instance;
+    public static PlayerScript instance;
     [SerializeField]
     private GameObject bullet;
     [SerializeField]
@@ -27,10 +27,9 @@ public class PLayerScript : MonoBehaviour
 
     [Space]
     [Header("Prefabs")]
- 
     public GameObject bulletPrefab;
     private float time ;
-    private float lerpTime ;
+    private float lerpTime;
     private bool action;
     private void Awake() // used to intialize any variable before game start
     {

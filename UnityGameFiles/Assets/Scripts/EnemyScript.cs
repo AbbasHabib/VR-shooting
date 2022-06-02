@@ -8,24 +8,29 @@ public class EnemyScript : MonoBehaviour
     private float health = 50f;
     private Animator animator;
     private Rigidbody[] ragDollBodies;
-    private Collider[] ragDollColliders;
-    private Vector3 explosionPos;
     [SerializeField]
     private Transform GunHolder;
+    [SerializeField]
+    private float shootingInterval;
     private EnemyBodyPart[] EnemyBodyPart;
     private bool died;
   
     public bool Died { get => died; set => died = value; }
 
-    private void Start()
+    private void Awake()
     {
-        explosionPos = transform.position;
+        //ToggleRagDoll(false);
         animator = GetComponent<Animator>();
         ragDollBodies = GetComponentsInChildren<Rigidbody>();
-        ragDollColliders = GetComponentsInChildren<Collider>();
         EnemyBodyPart = GetComponentsInChildren<EnemyBodyPart>();
-       
-        ToggleRagDoll(false);
+
+        InvokeRepeating("ShootAtPlayer", shootingInterval, shootingInterval);  //1s delay, repeat every 1s
+    }
+
+
+    private void ShootAtPlayer()
+    {
+        Debug.Log("Enemy shooting!!");
     }
 
     public void ToggleRagDoll(bool state)
@@ -36,8 +41,7 @@ public class EnemyScript : MonoBehaviour
         foreach (Rigidbody rb in ragDollBodies)
         {
             rb.isKinematic = !state;
-            rb.interpolation = RigidbodyInterpolation.Interpolate;
-            
+            rb.interpolation = RigidbodyInterpolation.Interpolate; 
         }
         if (state)
         {
@@ -45,23 +49,8 @@ public class EnemyScript : MonoBehaviour
             {
                 enemyBodyParts.DestroyBodyPart();
             }
-            
         }
-       /* if (this.Died && gunHolder.GetComponentInChildren<GunScript>()!=null)
-        {
-            GunScript gun = gunHolder.GetComponentInChildren<GunScript>();
-            gun.DropGunWhenDie();
-
-        }*/
+        Destroy(this.gameObject, 10f);
        
     }
-    public void shoot()
-    {
-
-    }
-    public void Move()
-    {
-        
-    }
-
 }

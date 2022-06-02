@@ -43,9 +43,11 @@ public class EnemyBodyPart : MonoBehaviour
             r.AddExplosionForce(15, transform.position, 5);
         }
         rigidBody.AddExplosionForce(15, transform.position, 5);
-        
-        this.enabled = false;
+
+
+
         isReplaced = true;
-        
+        Destroy(bodyPart, 1f);
+
     }
 }

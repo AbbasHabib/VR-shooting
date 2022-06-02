@@ -54,19 +54,19 @@ public class GunScript : MonoBehaviour
 
         currentAmmo--;
         
-        GameObject bullet = Instantiate(PLayerScript.instance.bulletPrefab, pos, rot);
+        GameObject bullet = Instantiate(PlayerScript.instance.bulletPrefab, pos, rot);
         if (GetComponentInChildren<ParticleSystem>() != null)
         {
             GetComponentInChildren<ParticleSystem>().Play();
         }
 
-        if (PLayerScript.instance.gun == this && currentAmmo <=0)
+        if (PlayerScript.instance.gun == this && currentAmmo <=0)
             StartCoroutine(Reload()); //coroutine pauses execution and automatically resumes at the next frame
 
         Camera.main.transform.DOComplete();
         Camera.main.transform.DOShakePosition(.2f, .01f, 10, 90, false, true).SetUpdate(true); // shakes a camera's position 
 
-        if (PLayerScript.instance.gun == this)
+        if (PlayerScript.instance.gun == this)
             transform.DOLocalMoveZ(-.1f, .05f).OnComplete(() => transform.DOLocalMoveZ(0, .2f)); //Moves the target's position to the given value
 
         RaycastHit hit; // information is stored here whenever we hit something

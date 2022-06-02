@@ -5,51 +5,45 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private NavMeshAgent agent;
     [SerializeField]
-    private Transform target;
+    private Transform target = null;
     [SerializeField]
-    //private float stoppingDistance = 3;
-    private Animator animator;
-    private string walking = "walk";
-    //private string speed = "speed";
-    
-    // Start is called before the first frame update
+    private Animator animator = null;
+    [SerializeField]
+    private float targetEnemyDistanceAllowance = 6.0f;
+    [SerializeField]
+    private bool allowMovement = true;
+
     void Start()
     {
-        GetRefrences();
-    }
-
-    private void GetRefrences()
-    {
-        agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }
     private void MoveToTarget()
     {
-        animator.SetBool(walking, true);
-        agent.destination = target.position;
-        //animator.SetFloat(speed,1f,0.3f,Time.deltaTime);
-        RotateToTarget();
-        float distanceToTarget = Vector3.Distance(target.position, transform.position);
-        if(distanceToTarget<=agent.stoppingDistance)
+        float distance = Vector3.Distance(this.gameObject.transform.position, target.transform.position);
+        if(distance < targetEnemyDistanceAllowance)
         {
-            animator.SetBool(walking, false);
-            //animator.SetFloat(speed, 0f);
+            animator.SetBool("walk", false);
         }
+        else
+        {
+            animator.SetBool("walk", true);
+            Vector3 goTo = new Vector3(target.transform.position.x, 0.59f, target.transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, goTo, Time.deltaTime * 0.3f);
+        }
+
+        RotateToTarget();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-        MoveToTarget();
+        if(!GetComponent<EnemyScript>().Died)
+            MoveToTarget();
     }
 
     private void RotateToTarget()
     {
         transform.LookAt(target);
-       
     }
-   
+
 }
