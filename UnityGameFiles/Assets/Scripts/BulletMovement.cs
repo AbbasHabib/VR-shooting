@@ -9,6 +9,11 @@ public class BulletMovement : MonoBehaviour
     [SerializeField]
     private float speed = 20;
 
+
+    private void Start()
+    {
+        Destroy(gameObject, 2.0f);
+    }
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
@@ -23,15 +28,6 @@ public class BulletMovement : MonoBehaviour
         {
             damageAbleObj.GetDamaged(damage);
         }
-
-        //if (collision.gameObject.CompareTag("Enemy"))
-        //{
-        //    //EnemyBodyPart bp = collision.gameObject.GetComponent<EnemyBodyPart>();
-        //    //TimeManager.instance.DoSlowMotion();
-        //    //bp.Enemy.Died = true;
-        //    //bp.Enemy.ToggleRagDoll(true);
-        //    //EnemyScript.RemoveEnemyJunk();
-        //}
         Destroy(gameObject, 0.5f);
     }
 }

@@ -5,22 +5,20 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 public class GunScript : MonoBehaviour
-{
-    //[SerializeField]
-    //private float damage = 10f;
+{   
     [SerializeField]
-    private float range = 50f;
-    [SerializeField]
-    private Camera fpsCam = null;
-    
-    [SerializeField]
-    private TimeManager timeManager;
     private int maxAmmo = 6;
+    [SerializeField]
+    private GameObject bulletToSpawn = null;
+    [SerializeField]
+    private float gunAwaitTime = 1f;
+
     private Rigidbody rb;
-   
     private int currentAmmo=-1;
     private float reloadTime = 1f;
     private bool isReloading=false;
+
+    public bool GunAvailable { get; private set; } = true;
 
     void Start()
     {
@@ -40,44 +38,39 @@ public class GunScript : MonoBehaviour
         currentAmmo = maxAmmo;
         isReloading = false;
     }
-    
+
+
+    private void ReleaseGunWait()
+    {
+        GunAvailable = true;
+    }
+
     public void shoot(Vector3 pos, Quaternion rot)
     {
-
-        if (isReloading)
-            return;
-        if (currentAmmo <= 0)
+        if (!GunAvailable || isReloading || currentAmmo <= 0)
             return;
 
+        GunAvailable = false;
         currentAmmo--;
-        
-        GameObject bullet = Instantiate(PlayerScript.instance.bulletPrefab, pos, rot);
+
+        //GameObject bullet = Instantiate(PlayerScript.instance.bulletPrefab, pos, rot);
+        GameObject bullet = Instantiate(bulletToSpawn, pos, rot);
         if (GetComponentInChildren<ParticleSystem>() != null)
         {
             GetComponentInChildren<ParticleSystem>().Play();
         }
 
-        if (PlayerScript.instance.gun == this && currentAmmo <=0)
-            StartCoroutine(Reload()); //coroutine pauses execution and automatically resumes at the next frame
+        if (currentAmmo <=0)  
+            StartCoroutine(Reload());
 
         Camera.main.transform.DOComplete();
-        Camera.main.transform.DOShakePosition(.2f, .01f, 10, 90, false, true).SetUpdate(true); // shakes a camera's position 
+        Camera.main.transform.DOShakePosition(.2f, .01f, 10, 90, false, true).SetUpdate(true); 
+         
+       
+        transform.DOLocalMoveZ(-.01f, .005f).OnComplete(() => transform.DOLocalMoveZ(0, .2f));
 
-        if (PlayerScript.instance.gun == this)
-            transform.DOLocalMoveZ(-.1f, .05f).OnComplete(() => transform.DOLocalMoveZ(0, .2f)); //Moves the target's position to the given value
 
-        RaycastHit hit; // information is stored here whenever we hit something
-        EnemyScript target;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))// return true if we hit something
-        {
-            target = hit.transform.GetComponent<EnemyScript>();
-            ///*if (target != null)
-            //{
-            //    target.Die();
-            //    //timeManager.DoSlowMotion();
-            //}*/
-            //Debug.Log(hit.transform.name);
-        } 
+        Invoke("ReleaseGunWait", gunAwaitTime);
     }
 
 }

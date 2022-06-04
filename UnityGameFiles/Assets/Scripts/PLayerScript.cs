@@ -55,7 +55,7 @@ public class PlayerScript : MonoBehaviour
 
     }
     
-    Vector3 SpawnPos()
+    private Vector3 SpawnPos()
     {
         return Camera.main.transform.position + (Camera.main.transform.forward * .5f) + (Camera.main.transform.up * -.02f);
     }

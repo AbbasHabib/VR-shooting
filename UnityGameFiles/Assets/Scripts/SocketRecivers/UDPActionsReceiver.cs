@@ -7,19 +7,49 @@ public class UDPActionsReceiver : MonoBehaviour
 {
     private String currAction = "";
     public static UDPActionsReceiver Instance { get; private set; }
-    [Header("Rotation Object [Gun]")]
+    [Header("Rotation Object [Gun|Hand]")]
     [SerializeField]
     private GameObject rotationObject = null;
     [SerializeField]
     private Quaternion offsetQuaterion = new Quaternion(0,0,0,0);
-
     [SerializeField]
     private float smoothness = 15.0f;
+
+
+    [Header("shooting Object [Gun]")]
+    [SerializeField]
+    private GameObject shootingGun = null;
+    private GunScript gunScript = null;
+    private GameObject spawnPoint = null;
+
     private Quaternion goToQuaterion = new Quaternion(0, 260, 180, 0);
+
+
+    /*
+     * 
+     * 
+     *     
+     *     [SerializeField]GunScript gun;
+    [SerializeField]GameObject spawnObj;
+    void Start()
+    {
+        InvokeRepeating("ShootTest", 2.0f, 1.3f);
+    }
+
+    // Update is called once per frame
+    void ShootTest()
+    {
+        gun.shoot(spawnObj.transform.position, spawnObj.transform.rotation);
+    }
+}
+     * */
+
+
 
 
     private void Awake()
     {
+
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -29,7 +59,11 @@ public class UDPActionsReceiver : MonoBehaviour
             Instance = this;
         }
     }
-
+    private void Start()
+    {
+        gunScript = shootingGun.GetComponent<GunScript>();
+        spawnPoint = GameObject.FindGameObjectWithTag("PlayerBulletSpawnPoint");
+    }
     void Update()
     {
         while (UDPReceive.actionQueue.TryDequeue(out currAction))
@@ -51,8 +85,11 @@ public class UDPActionsReceiver : MonoBehaviour
         string[] values = data.Split('/');
         if (values.Length == 2)
         {
-            float bendAngle = float.Parse(values[1]);
-            //print(">>>>>" + bendAngle);
+            float bendAngle = int.Parse(values[1]);
+            if(bendAngle == 45 || bendAngle == 90)
+            {
+                gunScript.shoot(spawnPoint.transform.position, spawnPoint.transform.rotation);
+            }
         }
         else if (values.Length != 2)
         {
