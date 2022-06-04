@@ -59,7 +59,5 @@ public class PlayerScript : MonoBehaviour
     {
         return Camera.main.transform.position + (Camera.main.transform.forward * .5f) + (Camera.main.transform.up * -.02f);
     }
-   
-
 
 }

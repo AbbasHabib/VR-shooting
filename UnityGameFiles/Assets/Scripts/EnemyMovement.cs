@@ -28,7 +28,8 @@ public class EnemyMovement : MonoBehaviour
         {
             animator.SetBool("walk", true);
             Vector3 goTo = new Vector3(target.transform.position.x, 0.59f, target.transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, goTo, Time.deltaTime * 0.3f);
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk")) 
+                transform.position = Vector3.Lerp(transform.position, goTo, Time.deltaTime * 0.3f);
         }
 
         RotateToTarget();

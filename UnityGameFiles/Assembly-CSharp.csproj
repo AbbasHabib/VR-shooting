@@ -72,6 +72,7 @@
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\Scripts\TimeManager.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\IDamageable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.dll" />
