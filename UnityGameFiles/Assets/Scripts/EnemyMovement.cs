@@ -11,10 +11,9 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator = null;
     [SerializeField]
     private float targetEnemyDistanceAllowance = 6.0f;
-    [SerializeField]
-    private bool allowMovement = true;
 
-    void Start()
+
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }

@@ -8972,7 +8972,7 @@ PrefabInstance:
     - target: {fileID: 6298780611130708823, guid: 2b98b784042c42640a3edbe4a63f9ac1, type: 3}
       propertyPath: m_Avatar
       value: 
-      objectReference: {fileID: 9000000, guid: 9c768334369f2984bbdc6c3f83a66591, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6298780611130708824, guid: 2b98b784042c42640a3edbe4a63f9ac1, type: 3}
       propertyPath: GunHolder
       value: 
@@ -9234,10 +9234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3639723ea11a93d499bc56ba0cc74563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 8914353279888130421, guid: 6e746ae9237f68243a2eb541a3b83455, type: 3}
-  bulletSpawner: {fileID: 8378566737868451044}
   gun: {fileID: 4449075173525497919}
-  gunHolder: {fileID: 8378566736106974335}
+  gunHolder: {fileID: 4449075173525497915}
   GunLayer:
     serializedVersion: 2
     m_Bits: 0

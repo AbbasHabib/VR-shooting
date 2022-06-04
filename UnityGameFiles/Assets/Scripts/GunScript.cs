@@ -6,12 +6,12 @@ using DG.Tweening;
 
 public class GunScript : MonoBehaviour
 {
-    [SerializeField]
-    private float damage = 10f;
+    //[SerializeField]
+    //private float damage = 10f;
     [SerializeField]
     private float range = 50f;
     [SerializeField]
-    private Camera fpsCam;
+    private Camera fpsCam = null;
     
     [SerializeField]
     private TimeManager timeManager;
@@ -21,8 +21,6 @@ public class GunScript : MonoBehaviour
     private int currentAmmo=-1;
     private float reloadTime = 1f;
     private bool isReloading=false;
-    [SerializeField]
-    private Transform weaponHolder;
 
     void Start()
     {
@@ -36,7 +34,6 @@ public class GunScript : MonoBehaviour
     
     IEnumerator Reload()
     {
-        
         isReloading = true;
         Debug.Log("Reloading.....");
         yield return new WaitForSeconds(reloadTime);
@@ -82,14 +79,5 @@ public class GunScript : MonoBehaviour
             Debug.Log(hit.transform.name);
         } 
     }
-
-   /* public void DropGunWhenDie()
-    {
-       
-        rb.isKinematic = false;
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
-        rb.AddForce(Vector3.up * 2, ForceMode.Impulse);
-
-    }*/
 
 }

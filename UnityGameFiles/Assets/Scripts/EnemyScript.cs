@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyScript : MonoBehaviour
 {
-    [SerializeField]
-    private float health = 50f;
+    //[SerializeField]
+    //private float health = 50f;
     private Animator animator;
     private Rigidbody[] ragDollBodies;
     [SerializeField]
     private Transform GunHolder;
     [SerializeField]
-    private float shootingInterval;
+    private float shootingInterval = 1.0f;
     private EnemyBodyPart[] EnemyBodyPart;
     private bool died;
   
@@ -19,17 +20,17 @@ public class EnemyScript : MonoBehaviour
 
     private void Awake()
     {
-        //ToggleRagDoll(false);
         animator = GetComponent<Animator>();
         ragDollBodies = GetComponentsInChildren<Rigidbody>();
         EnemyBodyPart = GetComponentsInChildren<EnemyBodyPart>();
 
-        InvokeRepeating("ShootAtPlayer", shootingInterval, shootingInterval);  //1s delay, repeat every 1s
+        InvokeRepeating("ShootAtPlayer", shootingInterval, shootingInterval); 
     }
 
 
     private void ShootAtPlayer()
     {
+        animator.SetTrigger("shoot");
         Debug.Log("Enemy shooting!!");
     }
 
@@ -52,5 +53,14 @@ public class EnemyScript : MonoBehaviour
         }
         Destroy(this.gameObject, 10f);
        
+    }
+
+    public static void RemoveEnemyJunk()
+    {
+        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "New Game Object");
+        foreach(GameObject o in objects)
+        {
+            Destroy(o);
+        }
     }
 }

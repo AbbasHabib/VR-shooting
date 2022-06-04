@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class EnemyBodyPart : MonoBehaviour
 {
-    public Renderer bodyPartRenderer;
-    public GameObject bodyPartPrefab;
+    [HideInInspector]
+    public Renderer bodyPartRenderer = null;
+    [HideInInspector]
+    public GameObject bodyPartPrefab = null;
+    [HideInInspector]
     public Rigidbody rigidBody;
-    public bool isReplaced;
-    public EnemyScript enemy;
+    private bool isReplaced;
+    public EnemyScript Enemy { get; private set; }
     
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        enemy = GetComponentInParent<EnemyScript>();
+        Enemy = GetComponentInParent<EnemyScript>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void DestroyBodyPart()
     {
         if (isReplaced)
@@ -34,7 +31,9 @@ public class EnemyBodyPart : MonoBehaviour
         GameObject bodyPart = new GameObject();
         if (bodyPartPrefab != null)
             bodyPart = Instantiate(bodyPartPrefab, transform.position, transform.rotation);
-       
+
+        bodyPart.name = "EnemyPart";
+
         Rigidbody[] rbs = bodyPart.GetComponentsInChildren<Rigidbody>();
         
         foreach (Rigidbody r in rbs)

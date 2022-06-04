@@ -26,9 +26,10 @@ public class BulletMovement : MonoBehaviour
         {
             EnemyBodyPart bp = collision.gameObject.GetComponent<EnemyBodyPart>();
             TimeManager.instance.DoSlowMotion();
-            bp.enemy.Died = true;
-            bp.enemy.ToggleRagDoll(true);
+            bp.Enemy.Died = true;
+            bp.Enemy.ToggleRagDoll(true);
+            EnemyScript.RemoveEnemyJunk();
         }
-        Destroy(gameObject);
+        Destroy(gameObject, 0.5f);
     }
 }

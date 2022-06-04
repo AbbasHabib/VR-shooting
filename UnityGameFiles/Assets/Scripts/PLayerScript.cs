@@ -9,15 +9,15 @@ public class PlayerScript : MonoBehaviour
 {
 
     public static PlayerScript instance;
-    [SerializeField]
-    private GameObject bullet;
-    [SerializeField]
-    private Transform bulletSpawner;
+    //[SerializeField]
+    //private GameObject bullet;
+    //[SerializeField]
+    //private Transform bulletSpawner;
     private float shootingRate = 15f;
     private float nextTimeToFire = 0f;
 
     [Header("Gun")]
-    public GunScript gun;
+    public GunScript gun = null;
     public Transform gunHolder;
     public LayerMask GunLayer;
 
