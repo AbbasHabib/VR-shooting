@@ -21,7 +21,6 @@ public class EnemyScript : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
         ragDollBodies = GetComponentsInChildren<Rigidbody>();
         EnemyBodyPart = GetComponentsInChildren<EnemyBodyPart>();
-
         InvokeRepeating("ShootAtPlayer", shootingInterval, shootingInterval); 
     }
 
