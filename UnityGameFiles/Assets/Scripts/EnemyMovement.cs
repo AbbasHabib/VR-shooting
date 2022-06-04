@@ -12,10 +12,13 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float targetEnemyDistanceAllowance = 6.0f;
 
+    private float startYPos;
+
 
     void Awake()
     {
         animator = GetComponent<Animator>();
+        startYPos = gameObject.transform.position.y;
     }
     private void MoveToTarget()
     {
@@ -27,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             animator.SetBool("walk", true);
-            Vector3 goTo = new Vector3(target.transform.position.x, 0.59f, target.transform.position.z);
+            Vector3 goTo = new Vector3(target.transform.position.x, startYPos, target.transform.position.z);
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk")) 
                 transform.position = Vector3.Lerp(transform.position, goTo, Time.deltaTime * 0.3f);
         }

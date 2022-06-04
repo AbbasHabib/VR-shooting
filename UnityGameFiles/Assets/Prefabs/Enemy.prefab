@@ -255,8 +255,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 6298780610357623019}
   bodyPartPrefab: {fileID: 8801732548567301636, guid: 301147a17a25bec47bc200f3ab249664, type: 3}
   rigidBody: {fileID: 6298780609431354625}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780609447930399
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,8 +477,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 6298780610357623019}
   bodyPartPrefab: {fileID: 5174364098437167931, guid: 40f6b82fc19fca64da66c15d3b9a1192, type: 3}
   rigidBody: {fileID: 6298780609885390639}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780609896685456
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,8 +637,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 0}
   bodyPartPrefab: {fileID: 0}
   rigidBody: {fileID: 6298780609998058412}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780610073970294
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,8 +764,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 0}
   bodyPartPrefab: {fileID: 0}
   rigidBody: {fileID: 6298780610073970298}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780610086909787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,8 +1507,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 6298780610093973508}
   bodyPartPrefab: {fileID: 3441970818036421683, guid: 03cd3381438646d4e95d62f0555f5348, type: 3}
   rigidBody: {fileID: 6298780610420433400}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780610454009887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,8 +1683,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 0}
   bodyPartPrefab: {fileID: 0}
   rigidBody: {fileID: 6298780610851576620}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780610853163779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,8 +1924,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 6298780610117907896}
   bodyPartPrefab: {fileID: 6877994808578447893, guid: b42f66d61f12eb7469be268bbd7836a5, type: 3}
   rigidBody: {fileID: 6298780610857297324}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780610894941944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,8 +2228,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 0}
   bodyPartPrefab: {fileID: 0}
   rigidBody: {fileID: 6298780611042169501}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780611123062093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2403,8 +2387,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 0}
   bodyPartPrefab: {fileID: 0}
   rigidBody: {fileID: 6298780611124737567}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780611130708818
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,7 +2462,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 6298780611130708823}
+  targetEnemyDistanceAllowance: 6
 --- !u!136 &6298780611130708825
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2490,7 +2473,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 6298780611130708818}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.3972702
   m_Height: 1.9773769
   m_Direction: 1
@@ -2507,8 +2490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22be7472ae0fb1441b4cef1b3f4e723f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  GunHolder: {fileID: 0}
+  GunHolder: {fileID: 4120335665924420952}
+  shootingInterval: 1
 --- !u!1 &6298780611229469575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2667,8 +2650,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 0}
   bodyPartPrefab: {fileID: 0}
   rigidBody: {fileID: 6298780611245067277}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780611249364817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,8 +2809,6 @@ MonoBehaviour:
   bodyPartRenderer: {fileID: 6298780610894941946}
   bodyPartPrefab: {fileID: 6934357218538561259, guid: 3ac65079358bd7b4d87658c8ae550baa, type: 3}
   rigidBody: {fileID: 6298780611280453988}
-  isReplaced: 0
-  enemy: {fileID: 6298780611130708824}
 --- !u!1 &6298780611320333668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3063,8 +3042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04665c650232e3c4daf913f148f75107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
   range: 50
   fpsCam: {fileID: 0}
   timeManager: {fileID: 0}
-  weaponHolder: {fileID: 0}
