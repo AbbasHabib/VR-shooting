@@ -71,12 +71,12 @@ public class GunScript : MonoBehaviour
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))// return true if we hit something
         {
             target = hit.transform.GetComponent<EnemyScript>();
-            /*if (target != null)
-            {
-                target.Die();
-                //timeManager.DoSlowMotion();
-            }*/
-            Debug.Log(hit.transform.name);
+            ///*if (target != null)
+            //{
+            //    target.Die();
+            //    //timeManager.DoSlowMotion();
+            //}*/
+            //Debug.Log(hit.transform.name);
         } 
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class EnemyScript : MonoBehaviour
+public class EnemyScript : MonoBehaviour, IDamageable
 {
     //[SerializeField]
     //private float health = 50f;
@@ -14,9 +14,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private float shootingInterval = 1.0f;
     private EnemyBodyPart[] EnemyBodyPart;
-    private bool died;
-  
-    public bool Died { get => died; set => died = value; }
+    public bool Died { get; private set; }
 
     private void Awake()
     {
@@ -30,8 +28,11 @@ public class EnemyScript : MonoBehaviour
 
     private void ShootAtPlayer()
     {
-        animator.SetTrigger("shoot");
-        Debug.Log("Enemy shooting!!");
+        if (!Died)
+        {
+            animator.SetTrigger("shoot");
+            Debug.Log("Enemy shooting!!");
+        }
     }
 
     public void ToggleRagDoll(bool state)
@@ -52,7 +53,7 @@ public class EnemyScript : MonoBehaviour
             }
         }
         Destroy(this.gameObject, 10f);
-       
+
     }
 
     public static void RemoveEnemyJunk()
@@ -62,5 +63,13 @@ public class EnemyScript : MonoBehaviour
         {
             Destroy(o);
         }
+    }
+
+    public void GetDamaged(float damage)
+    {
+        TimeManager.instance.DoSlowMotion();
+        Died = true;
+        ToggleRagDoll(true);
+        RemoveEnemyJunk();
     }
 }

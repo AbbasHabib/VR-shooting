@@ -11,12 +11,10 @@ public class EnemyBodyPart : MonoBehaviour
     [HideInInspector]
     public Rigidbody rigidBody;
     private bool isReplaced;
-    public EnemyScript Enemy { get; private set; }
     
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        Enemy = GetComponentInParent<EnemyScript>();
     }
 
     public void DestroyBodyPart()

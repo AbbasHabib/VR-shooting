@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class BulletMovement : MonoBehaviour
 {
-    public float speed=20;
-    Rigidbody rb;
+    [SerializeField]
+    private float damage = 0.5f;
+    [SerializeField]
+    private float speed = 20;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
@@ -21,15 +16,22 @@ public class BulletMovement : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        
-        if (collision.gameObject.CompareTag("Enemy"))
+
+        IDamageable damageAbleObj = collision.gameObject.GetComponent<IDamageable>();
+
+        if (damageAbleObj != null)
         {
-            EnemyBodyPart bp = collision.gameObject.GetComponent<EnemyBodyPart>();
-            TimeManager.instance.DoSlowMotion();
-            bp.Enemy.Died = true;
-            bp.Enemy.ToggleRagDoll(true);
-            EnemyScript.RemoveEnemyJunk();
+            damageAbleObj.GetDamaged(damage);
         }
+
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
+        //    //EnemyBodyPart bp = collision.gameObject.GetComponent<EnemyBodyPart>();
+        //    //TimeManager.instance.DoSlowMotion();
+        //    //bp.Enemy.Died = true;
+        //    //bp.Enemy.ToggleRagDoll(true);
+        //    //EnemyScript.RemoveEnemyJunk();
+        //}
         Destroy(gameObject, 0.5f);
     }
 }
