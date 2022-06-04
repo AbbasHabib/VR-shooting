@@ -6,4 +6,4 @@ A VR unity shooting game. With the integration of a real life hand motion and fi
 
 ### now weapong can be rotate around via the MEM.
 
-![img of shooting](imgs\Run0.JPG)
+![img of shooting](imgs/Run0.JPG)
