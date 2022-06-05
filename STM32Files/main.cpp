@@ -1,4 +1,5 @@
 #include "MPU_DRIVERS/MPU_FULL.h"
+#include "FlexibleSensor.h"
 #define M_PI 3.14159265358979323846
 
 #define BAUD_RATE 38400
@@ -25,12 +26,14 @@ float
     ypr[3]; // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
 void SendQuaternion();
+void calcSendFlexData();
 
 void setup() {
   Wire.begin();
   Wire.setClock(400000);
 
   Serial.begin(BAUD_RATE);
+  InitFlexSensors();
 
   while (!Serial) {
   };
@@ -67,7 +70,16 @@ void loop() {
     fifoCount -= packetSize;
 
     SendQuaternion();
+    calcSendFlexData();
   }
+}
+
+void calcSendFlexData() {
+  float sensorVal = SensorsRead();
+  int angle = CalcAngle(sensorVal, flatResistance, bendResistance);
+  Serial.print("f/");
+  Serial.print(angle);
+  Serial.print("#");
 }
 
 void SendQuaternion() {
