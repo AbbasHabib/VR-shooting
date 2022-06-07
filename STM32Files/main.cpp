@@ -75,10 +75,11 @@ void loop() {
 }
 
 void calcSendFlexData() {
-  float sensorVal = SensorsRead();
-  int angle = CalcAngle(sensorVal, flatResistance, bendResistance);
+  int *sensorVal = SensorsRead();
   Serial.print("f/");
-  Serial.print(angle);
+  Serial.print(sensorVal[0]);
+  Serial.print("/");
+  Serial.print(sensorVal[1]);
   Serial.print("#");
 }
 
