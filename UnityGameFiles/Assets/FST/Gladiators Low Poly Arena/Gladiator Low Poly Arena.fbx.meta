@@ -1,0 +1,271 @@
+fileFormatVersion: 2
+guid: c685db5bd3a0f9b4d8ddb667b78d772f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arena
+    100002: FlagPole
+    100004: FlagPole.001
+    100006: FlagPole.002
+    100008: FlagPole.003
+    100010: FlagPole.004
+    100012: Flags
+    100014: Flags.001
+    100016: Flags.002
+    100018: Flags.003
+    100020: //RootNode
+    100022: Mechanism
+    100024: Mechanism.001
+    100026: Mechanism.002
+    100028: Mechanism.003
+    100030: Mechanism.004
+    100032: Mechanism.005
+    100034: Pillars
+    100036: Pillars.001
+    100038: Pillars.002
+    100040: Pillars.003
+    100042: Portal
+    100044: WoodSpikes
+    100046: WoodSpikes.001
+    100048: WoodSpikes.002
+    100050: WoodSpikes.003
+    100052: WoodSpikes.004
+    100054: WoodSpikes.005
+    400000: Arena
+    400002: FlagPole
+    400004: FlagPole.001
+    400006: FlagPole.002
+    400008: FlagPole.003
+    400010: FlagPole.004
+    400012: Flags
+    400014: Flags.001
+    400016: Flags.002
+    400018: Flags.003
+    400020: //RootNode
+    400022: Mechanism
+    400024: Mechanism.001
+    400026: Mechanism.002
+    400028: Mechanism.003
+    400030: Mechanism.004
+    400032: Mechanism.005
+    400034: Pillars
+    400036: Pillars.001
+    400038: Pillars.002
+    400040: Pillars.003
+    400042: Portal
+    400044: WoodSpikes
+    400046: WoodSpikes.001
+    400048: WoodSpikes.002
+    400050: WoodSpikes.003
+    400052: WoodSpikes.004
+    400054: WoodSpikes.005
+    2100000: MechanismMaterial
+    2100002: FlagPoleMaterial
+    2100004: PillarsMaterial
+    2100006: Flag
+    2100008: ArenaGate
+    2100010: ArenaMaterial
+    2100012: WoodSpike
+    2300000: Arena
+    2300002: FlagPole
+    2300004: FlagPole.001
+    2300006: FlagPole.002
+    2300008: FlagPole.003
+    2300010: FlagPole.004
+    2300012: Flags
+    2300014: Flags.001
+    2300016: Flags.002
+    2300018: Flags.003
+    2300020: Mechanism
+    2300022: Mechanism.001
+    2300024: Mechanism.002
+    2300026: Mechanism.003
+    2300028: Mechanism.004
+    2300030: Mechanism.005
+    2300032: Pillars
+    2300034: Pillars.001
+    2300036: Pillars.002
+    2300038: Pillars.003
+    2300040: Portal
+    2300042: WoodSpikes
+    2300044: WoodSpikes.001
+    2300046: WoodSpikes.002
+    2300048: WoodSpikes.003
+    2300050: WoodSpikes.004
+    2300052: WoodSpikes.005
+    3300000: Arena
+    3300002: FlagPole
+    3300004: FlagPole.001
+    3300006: FlagPole.002
+    3300008: FlagPole.003
+    3300010: FlagPole.004
+    3300012: Flags
+    3300014: Flags.001
+    3300016: Flags.002
+    3300018: Flags.003
+    3300020: Mechanism
+    3300022: Mechanism.001
+    3300024: Mechanism.002
+    3300026: Mechanism.003
+    3300028: Mechanism.004
+    3300030: Mechanism.005
+    3300032: Pillars
+    3300034: Pillars.001
+    3300036: Pillars.002
+    3300038: Pillars.003
+    3300040: Portal
+    3300042: WoodSpikes
+    3300044: WoodSpikes.001
+    3300046: WoodSpikes.002
+    3300048: WoodSpikes.003
+    3300050: WoodSpikes.004
+    3300052: WoodSpikes.005
+    4300000: Mechanism
+    4300002: FlagPole
+    4300004: Pillars
+    4300006: WoodSpikes
+    4300008: Flags
+    4300010: Portal
+    4300012: Arena
+    4300014: WoodSpikes.001
+    4300016: WoodSpikes.002
+    4300018: WoodSpikes.003
+    4300020: WoodSpikes.004
+    4300022: WoodSpikes.005
+    4300024: FlagPole.001
+    4300026: FlagPole.002
+    4300028: FlagPole.003
+    4300030: FlagPole.004
+    4300032: Flags.001
+    4300034: Flags.002
+    4300036: Flags.003
+    4300038: Mechanism.001
+    4300040: Mechanism.002
+    4300042: Mechanism.003
+    4300044: Mechanism.004
+    4300046: Mechanism.005
+    4300048: Pillars.001
+    4300050: Pillars.002
+    4300052: Pillars.003
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ArenaGate
+    second: {fileID: 2100000, guid: f15102c53ac84594a9c1a64bfa312c66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ArenaMaterial
+    second: {fileID: 2100000, guid: c07a83a7d48b561409f63d90157db441, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flag
+    second: {fileID: 2100000, guid: 10c909074d284a348a18dea39472a898, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FlagPoleMaterial
+    second: {fileID: 2100000, guid: 5b80fe49dc5191848bad2bdbdeae965d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MechanismMaterial
+    second: {fileID: 2100000, guid: 817be96ef01542047ac875ec7d8a7bc9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PillarsMaterial
+    second: {fileID: 2100000, guid: 4d5450caebd16874c810ac0b917ea0ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodSpike
+    second: {fileID: 2100000, guid: 733305d27cc44fa4bb93047578ed6418, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

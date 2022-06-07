@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationObject: {fileID: 0}
-  offsetQuaterion: {x: 0.76604444, y: -0.000000033484866, z: -0.64278764, w: 0.00000002809714}
+  offsetQuaterion: {x: 0, y: 0, z: 0, w: 1}
   smoothness: 15
   shootingGun: {fileID: 0}

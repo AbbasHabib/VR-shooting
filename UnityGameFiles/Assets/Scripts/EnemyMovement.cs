@@ -13,6 +13,8 @@ public class EnemyMovement : MonoBehaviour
     private float targetEnemyDistanceAllowance = 6.0f;
 
     private float startYPos;
+    [SerializeField]
+    private bool staticPlayer = false;
 
 
     void Awake()
@@ -34,14 +36,15 @@ public class EnemyMovement : MonoBehaviour
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("walk")) 
                 transform.position = Vector3.Lerp(transform.position, goTo, Time.deltaTime * 0.3f);
         }
-
-        RotateToTarget();
     }
 
     void Update()
     {
-        if(!GetComponent<EnemyScript>().Died)
+        if(!GetComponent<EnemyScript>().Died && !staticPlayer)
             MoveToTarget();
+
+        RotateToTarget();
+
     }
 
     private void RotateToTarget()

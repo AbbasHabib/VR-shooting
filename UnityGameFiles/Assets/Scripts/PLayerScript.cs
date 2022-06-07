@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 
 public class PlayerScript : MonoBehaviour
@@ -38,7 +37,6 @@ public class PlayerScript : MonoBehaviour
             gun = gunHolder.GetComponentInChildren<GunScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

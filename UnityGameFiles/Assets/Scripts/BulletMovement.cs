@@ -11,7 +11,7 @@ public class BulletMovement : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 2.0f);
+        Destroy(gameObject, 10.0f);
     }
     void Update()
     {
@@ -20,7 +20,7 @@ public class BulletMovement : MonoBehaviour
    
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 2.0f);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -28,8 +28,13 @@ public class BulletMovement : MonoBehaviour
         IDamageable damageAbleObj = collision.gameObject.GetComponent<IDamageable>();
         if (damageAbleObj != null)
         {
+            if (gameObject.tag == "EnemyBullet" && collision.gameObject.tag == "Enemy")
+                return; // to avoid enemy killing them themselves
+            if (gameObject.tag == "PlayerBullet" && collision.gameObject.tag == "Player")
+                return; // to avoid player killing him self
+
             damageAbleObj.GetDamaged(damage);
+            Destroy(gameObject, 0.5f);
         }
-        Destroy(gameObject, 0.5f);
     }
 }

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class GunScript : MonoBehaviour
 {   
@@ -27,7 +26,6 @@ public class GunScript : MonoBehaviour
         {
             currentAmmo = maxAmmo;
         }
-            
     }
     
     IEnumerator Reload()
@@ -50,6 +48,8 @@ public class GunScript : MonoBehaviour
         if (!GunAvailable || isReloading || currentAmmo <= 0)
             return;
 
+        SFXManager.Instance.Play("shoot");
+
         GunAvailable = false;
         currentAmmo--;
 
@@ -63,11 +63,11 @@ public class GunScript : MonoBehaviour
         if (currentAmmo <=0)  
             StartCoroutine(Reload());
 
-        Camera.main.transform.DOComplete();
-        Camera.main.transform.DOShakePosition(.2f, .01f, 10, 90, false, true).SetUpdate(true); 
+        //Camera.main.transform.DOComplete();
+        //Camera.main.transform.DOShakePosition(.2f, .01f, 10, 90, false, true).SetUpdate(true); 
          
        
-        transform.DOLocalMoveZ(-.01f, .005f).OnComplete(() => transform.DOLocalMoveZ(0, .2f));
+        //transform.DOLocalMoveZ(-.01f, .005f).OnComplete(() => transform.DOLocalMoveZ(0, .2f));
 
 
         Invoke("ReleaseGunWait", gunAwaitTime);

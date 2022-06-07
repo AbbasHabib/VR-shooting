@@ -16,21 +16,29 @@ public class EnemyScript : MonoBehaviour, IDamageable
     private EnemyBodyPart[] EnemyBodyPart;
     public bool Died { get; private set; }
 
+    private EnemyGun enemyGunScript;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         ragDollBodies = GetComponentsInChildren<Rigidbody>();
         EnemyBodyPart = GetComponentsInChildren<EnemyBodyPart>();
+        enemyGunScript = GetComponentInChildren<EnemyGun>();
         InvokeRepeating("ShootAtPlayer", shootingInterval, shootingInterval); 
     }
 
+    private void SpawnBullet()
+    {
+        enemyGunScript.ShootAtPlayer(GetComponentInChildren<ParticleSystem>().transform.position);
 
+    }
     private void ShootAtPlayer()
     {
         if (!Died)
         {
             animator.SetTrigger("shoot");
             Debug.Log("Enemy shooting!!");
+            Invoke("SpawnBullet", 1f);
         }
     }
 
@@ -70,5 +78,7 @@ public class EnemyScript : MonoBehaviour, IDamageable
         Died = true;
         ToggleRagDoll(true);
         RemoveEnemyJunk();
+        SFXManager.Instance.Play("enemyGlassBreak");
+        PostProcessManager.instance.GoToChromaticAbb(1);
     }
 }

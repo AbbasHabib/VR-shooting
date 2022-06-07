@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using System;
 
 public class UDPActionsReceiver : MonoBehaviour
@@ -24,29 +25,6 @@ public class UDPActionsReceiver : MonoBehaviour
 
     private Quaternion goToQuaterion = new Quaternion(0, 260, 180, 0);
 
-
-    /*
-     * 
-     * 
-     *     
-     *     [SerializeField]GunScript gun;
-    [SerializeField]GameObject spawnObj;
-    void Start()
-    {
-        InvokeRepeating("ShootTest", 2.0f, 1.3f);
-    }
-
-    // Update is called once per frame
-    void ShootTest()
-    {
-        gun.shoot(spawnObj.transform.position, spawnObj.transform.rotation);
-    }
-}
-     * */
-
-
-
-
     private void Awake()
     {
 
@@ -59,19 +37,38 @@ public class UDPActionsReceiver : MonoBehaviour
             Instance = this;
         }
     }
+
+    GameObject FindChildWithTag(GameObject parent, string tag)
+    {
+        GameObject child = null;
+
+        foreach (Transform transform in parent.transform)
+        {
+            if (transform.CompareTag(tag))
+            {
+                child = transform.gameObject;
+                break;
+            }
+        }
+
+        return child;
+    }
     private void Start()
     {
         gunScript = shootingGun.GetComponent<GunScript>();
-        spawnPoint = GameObject.FindGameObjectWithTag("PlayerBulletSpawnPoint");
+        spawnPoint = FindChildWithTag(shootingGun, "PlayerBulletSpawnPoint");
     }
     void Update()
     {
         while (UDPReceive.actionQueue.TryDequeue(out currAction))
         {
-            if (currAction[0] == 'r')
-                rotateObj(currAction);
-            else if (currAction[0] == 'f')
-                triggerFlex(currAction);
+            if (currAction.Length > 0)
+            {
+                if (currAction[0] == 'r')
+                    rotateObj(currAction);
+                else if (currAction[0] == 'f')
+                    triggerFlex(currAction);
+            }
         }
     }
 
@@ -83,12 +80,19 @@ public class UDPActionsReceiver : MonoBehaviour
     public void triggerFlex(string data)
     {
         string[] values = data.Split('/');
-        if (values.Length == 2)
+        if (values.Length == 3)
         {
-            float bendAngle = int.Parse(values[1]);
-            if(bendAngle == 45 || bendAngle == 90)
+            float bendAngle1 = int.Parse(values[1]);
+            float bendAngle2 = int.Parse(values[2]);
+
+            //print("f1 > " +bendAngle1 +" f2 > " + bendAngle2); //  121292 f2 > 63279
+            if (bendAngle1 >= 121292)
             {
-                gunScript.shoot(spawnPoint.transform.position, spawnPoint.transform.rotation);
+                try
+                {
+                    gunScript.shoot(spawnPoint.transform.position, spawnPoint.transform.rotation);
+                }
+                catch { }
             }
         }
         else if (values.Length != 2)
@@ -105,7 +109,7 @@ public class UDPActionsReceiver : MonoBehaviour
             float x = float.Parse(values[2]);
             float y = float.Parse(values[3]);
             float z = float.Parse(values[4]);
-            goToQuaterion = new Quaternion(w + offsetQuaterion.w, y + offsetQuaterion.y, x + offsetQuaterion.x, z + offsetQuaterion.z);
+            goToQuaterion = new Quaternion(w  + offsetQuaterion.w, y + offsetQuaterion.y, x + offsetQuaterion.x, z  + offsetQuaterion.z);
         }
         else if (values.Length != 5)
         {

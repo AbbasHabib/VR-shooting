@@ -23,7 +23,7 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Time.timeScale += (1f / slowdownLenght)*Time.unscaledDeltaTime; // after 2 sec it returns to normal 
         Time.timeScale = Mathf.Clamp(Time.timeScale,0.0f,1f);

@@ -2464,6 +2464,7 @@ MonoBehaviour:
   target: {fileID: 0}
   animator: {fileID: 6298780611130708823}
   targetEnemyDistanceAllowance: 5
+  staticPlayer: 1
 --- !u!136 &6298780611130708825
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3013,23 +3014,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7946492565493964175, guid: 3b999e4df09dfed4fbfab545cf4faafe, type: 3}
   m_PrefabInstance: {fileID: 6298780611360385239}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4120335665924420953 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7946492565493964174, guid: 3b999e4df09dfed4fbfab545cf4faafe, type: 3}
-  m_PrefabInstance: {fileID: 6298780611360385239}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6298780610616937509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4120335665924420953}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04665c650232e3c4daf913f148f75107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxAmmo: 6
-  bulletToSpawn: {fileID: 0}
-  gunAwaitTime: 1

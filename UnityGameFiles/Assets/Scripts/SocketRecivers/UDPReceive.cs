@@ -8,50 +8,88 @@ using System.Collections.Concurrent;
 
 public class UDPReceive : MonoBehaviour
 {
-    private Thread receiveThread;
+    private Thread receiveThread = null;
 
     private UdpClient client;
 
-    [SerializeField]
     private int port = 8051;
+    bool alive = false;
 
     public static ConcurrentQueue<String> actionQueue { get; private set; }
 
-    public void Start()
+    public void OnApplicationQuit()
     {
-        init();
-    }
+        try
+        {
+            receiveThread.Abort();
+        }
+        catch
+        {
+            print("thread cannot be aborted");
 
-    private void init()
-    { 
-        actionQueue =  new ConcurrentQueue<String>();
-        receiveThread = new Thread(new ThreadStart(ReceiveData));
-        receiveThread.IsBackground = true;
-        receiveThread.Start();
+        }
+        print("thread aborted");
+    }
+    private void Update()
+    {
+        if (!alive)
+        {
+            try
+            {
+                if (receiveThread != null)
+                    receiveThread.Abort();
+            }
+            catch (Exception e)
+            {
+                print(e);
+                alive = false;
+            }
+            try
+            {
+                actionQueue = new ConcurrentQueue<String>();
+                receiveThread = new Thread(new ThreadStart(ReceiveData));
+                receiveThread.IsBackground = true;
+                receiveThread.Start();
+                alive = receiveThread.IsAlive;
+            }
+            catch (Exception e)
+            {
+                alive = false;
+                print(e);
+            }
+        }
+
     }
 
     private void ReceiveData()
     {
-        IPEndPoint anyIP;
-        byte[] data;
-        client = new UdpClient(port);
         try
         {
-            anyIP = new IPEndPoint(IPAddress.Any, 0);
-            data = client.Receive(ref anyIP);
-            string text = Encoding.UTF8.GetString(data);
-            actionQueue.Enqueue(text);
+            IPEndPoint anyIP;
+            byte[] data;
+            client = new UdpClient(port);
+            while (true)
+            {
+                try
+                {
+                    anyIP = new IPEndPoint(IPAddress.Any, 0);
+                    data = client.Receive(ref anyIP);
+                    string text = Encoding.UTF8.GetString(data);
+                    actionQueue.Enqueue(text);
+                }
+                catch (Exception err)
+                {
+                    Debug.LogError(err.ToString());
+                    alive = false;
+                    return;
+                }
+            }
         }
         catch (Exception err)
         {
-            print(err.ToString());
+            Debug.LogError(err.ToString());
+            alive = false;
             return;
-        }
-        while (true)
-        {
-            data = client.Receive(ref anyIP);
-            string text = Encoding.UTF8.GetString(data);
-            actionQueue.Enqueue(text);
         }
     }
 }
