@@ -4,14 +4,14 @@ A VR unity shooting game. With the integration of a real life hand motion and fi
 
 # Download Links
 
-- Latest stable game build ➡ [Executatble Game]("https://drive.google.com/file/d/1qrk8vEn52_JGwXJpJ8K9UbIP_1hy_aqm/view?usp=sharing")
-- Latest stable unity project ➡ [Unity project]("https://drive.google.com/file/d/11MGLspKIjBK62r2HWcPuZUsQUiDKZNR1/view?usp=sharing")
+- Latest stable game build ➡ [Executatble Game](https://drive.google.com/file/d/1qrk8vEn52_JGwXJpJ8K9UbIP_1hy_aqm/view?usp=sharing)
+- Latest stable unity project ➡ [Unity project](https://drive.google.com/file/d/11MGLspKIjBK62r2HWcPuZUsQUiDKZNR1/view?usp=sharing)
 
 # Setup process
 
 ### 0 - Download latest stable unity project files.
 
-- Latest stable unity project ➡ [Unity project]("https://drive.google.com/file/d/11MGLspKIjBK62r2HWcPuZUsQUiDKZNR1/view?usp=sharing")
+- Latest stable unity project ➡ [Unity project](https://drive.google.com/file/d/11MGLspKIjBK62r2HWcPuZUsQUiDKZNR1/view?usp=sharing)
 
 ### 1- Flash ESP8622 Script into your ESP8266 uc. 👨‍💻
 
